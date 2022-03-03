@@ -20,6 +20,6 @@ from board import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('board/', views.index),              # 127.0.0.1:8000/board/
-    path('', views.index),                      # 127.0.0.1:8000/
+    path('', views.index),                      # 127.0.0.1:8000/com
     path('board/', include('board.urls')),      # 127.0.0.1:8000/board/
 ]
