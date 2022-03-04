@@ -22,4 +22,5 @@ urlpatterns = [
     # path('board/', views.index),              # 127.0.0.1:8000/board/
     path('', views.index),                      # 127.0.0.1:8000/com
     path('board/', include('board.urls')),      # 127.0.0.1:8000/board/
+    path('common/', include('common.urls')),    # 127.0.0.1:8000/common/
 ]

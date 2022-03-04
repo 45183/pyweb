@@ -46,5 +46,5 @@ def answer_create(request, question_id):
             return redirect('board:detail', question_id=question_id)
     else:
         form = AnswerForm()                         # 비어있는 폼
-    context = {'form':form}
+    context = {'form':form, 'question':question}
     return render(request, 'board/detail.html', context)
