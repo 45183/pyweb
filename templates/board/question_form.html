@@ -10,14 +10,16 @@
     <!--        {{ form.as_p }}-->
             {% if form.errors %}
             {% include 'form_errors.html' %}
-<!--            <div class="alert alert-danger">-->
-<!--                {% for field in form %}-->
-<!--                    {% if field.errors %}-->
-<!--                        <strong>{{ field.label }}</strong>-->
-<!--                        {{ field.errors }}-->
-<!--                    {% endif %}-->
-<!--                {% endfor %}-->
-<!--            </div>-->
+<!--
+            <div class="alert alert-danger">
+                {% for field in form %}
+                    {% if field.errors %}
+                        <strong>{{ field.label }}</strong>
+                        {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+-->
             {% endif %}
             <div class="form-group">
                 <label for="subject">제목</label>
