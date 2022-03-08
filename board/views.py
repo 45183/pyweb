@@ -7,6 +7,10 @@ from board.models import Question, Answer
 from board.forms import QuestionForm, AnswerForm
 
 def index(request):
+    # 인덱스 페이지
+    return render(request, 'board/index.html')
+
+def boardlist(request):
     # 질문 목록 페이지
     # question_list = Question.objects.all()                    # db에서 전체 검색
     question_list = Question.objects.order_by('-create_date')   # 내림차순(-) / -pk도 가능
@@ -30,7 +34,7 @@ def question_create(request):
             question.create_date = timezone.now()   # 작성일
             question.author = request.user          # 인증된 사용자(글쓴이)
             question.save()                         # 실제 저장
-            return redirect('board:index')          # 질문 목록 페이지 강제 이동
+            return redirect('board:boardlist')          # 질문 목록 페이지 강제 이동
     else:   # request.method == "GET"
         form = QuestionForm         # 질문 등록 폼 객체 변수 생성 (비어있는 폼)
     context = {'form':form}
@@ -70,3 +74,33 @@ def question_modify(request, question_id):
         form = QuestionForm(instance=question)                       # 이미 작성된 폼
     context = {'form':form}
     return render(request, 'board/question_form.html', context)
+
+@login_required(login_url='common:login')
+def answer_modify(request, answer_id):
+    # 답변 수정
+    answer = Answer.objects.get(id=answer_id)
+    form = AnswerForm(request.POST, instance=answer)  # 수정할 답변 폼
+    if request.method == "POST":
+        answer = form.save(commit=False)
+        answer.modify_date = timezone.now()
+        answer.author = request.user
+        answer.save()                                               # db에 저장
+        return redirect('board:detail', question_id = answer.question.id)
+    else:
+        form = AnswerForm(instance=answer)
+    context = {'form':form}
+    return render(request, 'board/answer_form.html', context)
+
+@login_required(login_url='common:login')
+def question_delete(request, question_id):
+    # 질문 삭제
+    question = Question.objects.get(id=question_id)
+    question.delete()                                               # 해당 질문 삭제
+    return redirect('board:boardlist')                                  # 질문 목록
+
+@login_required(login_url='common:login')
+def answer_delete(request, answer_id):
+    # 답변 삭제
+    answer = Answer.objects.get(id=answer_id)
+    answer.delete()
+    return redirect('board:detail', question_id=answer.question.id) # 상세 페이지
