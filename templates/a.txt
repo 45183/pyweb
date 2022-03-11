@@ -1,0 +1,35 @@
+python -m venv .
+
+가상화 모듈 2종류 - venv, virtualenv(pythonanywhere에서 사용)
+
+
+
+
+pwd
+ls
+virtualenv venvs --python=python3.8     ---- 가상화모듈 설치
+rm -rf venvs 		 	    ----- 삭제
+
+
+pythonanywhere에서 bash console
+git clone https://github.com/45183/pyweb
+cd pyweb
+virtualenv venvs --python=python3.8
+cd venvs
+cd bin
+. activate
+cd ~/pyweb
+pip install django
+python manage.py migrate
+
+
+
+햄버거 메뉴 
+web
+add a new web app
+manual configuration
+python3.8
+
+
+온라인으로 할때
+config - settings.py에서 DEBUG = False

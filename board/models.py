@@ -4,9 +4,10 @@ from django.db import models
 class Question(models.Model):
     subject = models.CharField(max_length=200)
     content = models.TextField()
-    create_date = models.DateTimeField()                            # 반드시 있어야 함(NOT NULL)
-    modify_date = models.DateTimeField(null=True, blank=True)       # null 허용, blank - 폼 데이터 null
-    author = models.ForeignKey(User, on_delete=models.CASCADE)      # user의 username과 외래키 설정
+    create_date = models.DateTimeField()                                                            # 반드시 있어야 함(NOT NULL)
+    modify_date = models.DateTimeField(null=True, blank=True)                                       # null 허용, blank - 폼 데이터 null
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question')      # user의 username과 외래키 설정
+    voter = models.ManyToManyField(User, related_name='voter_question')                             # 추천수 - 다대다 관계
 
     def __str__(self):
         return self.subject
