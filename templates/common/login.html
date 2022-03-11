@@ -15,7 +15,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <!-- 유효성 검사 -->
-        <!-- {% include 'form_errors.html' %} -->
+<!--        {% include 'form_errors.html' %} -->
         {% if error %}
             <div class="alert alert-danger">
                 {{ error }}
@@ -31,7 +31,8 @@
             <input type="password" id="password" name="password" class="form-control"
                    value="{{ form.password.value|default_if_none:'' }}">
         </div>
-        <button type="submit" class="btn btn-success">로그인</button>  <!-- input type도 상관 x -->
+        <button type="submit" class="btn btn-success">로그인</button>
+        <!-- input type도 상관 x -->
     </form>
 </div>
 {% endblock %}

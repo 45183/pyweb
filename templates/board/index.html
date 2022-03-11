@@ -8,15 +8,39 @@ Welcome~ PyWeb!!
 <!--    <div class="jumbotron">-->
 <!--    <h1 class="text-center">어서오세요<br>무엇이든 물어보세요</h1>-->
 <!--    </div>-->
-    <div class="row">
-<!-- 배경 사진 전환 -->
-        <div class="card mb-4">
-            <img src="{% static 'board/images/bg0.jpg' %}" id="pic">
+<!--    carousel 사용 - 배경 사진 전환 -->
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'board/images/bg0.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'board/images/bg1.jpg' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'board/images/bg2.jpg' %}" class="d-block w-100" alt="...">
+            </div>
         </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
-        <div class="col-6">
+    <div class="row">
+<!-- 배경 사진 전환 : 자바스크립트 작성 -->
+<!--        <div class="card mb-4">-->
+<!--            <img src="{% static 'board/images/bg0.jpg' %}" id="pic">-->
+<!--        </div>-->
+
+
+        <div class="col-6 p-5">
             <h3 class="mt-4">무엇이든 물어보세요</h3>
-            <div class="card" style="width: 25rem">
+            <div class="card my-3">
                 <div class="card-body">
                     <p>질문/답변 게시판을 사용해보세요</p>
                     <p>댓글과 추천기능을 사용해보세요</p>
@@ -24,7 +48,7 @@ Welcome~ PyWeb!!
                 </div>
             </div>
             <h3 class="mt-4">설문 조사</h3>
-            <div class="card my-3   " style="width: 25rem">
+            <div class="card my-3">
                 <div class="card-body">
                     <p>설문에 참여해보세요</p>
                     <a href="{% url 'board:boardlist' %}" class="btn btn-danger">투표하기 &rarr;</a>    <!-- 투표로 연결 -->
@@ -32,20 +56,20 @@ Welcome~ PyWeb!!
             </div>
         </div>
     <!-- 최근 질문 -->
-        <div class="col-6">
+        <div class="col-6 p-5">
             <h3 class="mt-4">Question - 최근 질문</h3>
             {% for question in question_list %}
-            <div class="card my-3" style="width:25rem">
-                <div class="card-body">
-                    <div class="card-text">
-                        <div class="text-left">
-                            <a href="{% url 'board:detail' question.id %}">
-                                {{ question.subject }}
-                            </a>
-                        </div>
-                        <div class="text-center mt-2">
-                            {{ question.author }}({{ question.create_date }})
-                        </div>
+            <div class="card my-2">
+                <div class="card-body p-2">
+                    <p>
+                        <a href="{% url 'board:detail' question.id %}" class="text-dark text-decoration-none">
+                            {{ question.subject }}
+                        </a>
+                    </p>
+                    <div class="card-text text-right">
+                        <span class="badge text-dark">
+                            {{ question.author }}&nbsp; &nbsp;({{ question.create_date }})
+                        </span>
                     </div>
                 </div>
             </div>
@@ -73,3 +97,19 @@ Welcome~ PyWeb!!
     }
 </script>
 {% endblock %}
+
+
+
+<!--    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">-->
+<!--        <div class="carousel-inner">-->
+<!--            <div class="carousel-item active">-->
+<!--                <img src="{% static 'board/images/bg0.jpg' %}" class="d-block w-100" alt="배경사진0">-->
+<!--            </div>-->
+<!--            <div class="carousel-item">-->
+<!--                <img src="{% static 'board/images/bg1.jpg' %}" class="d-block w-100" alt="배경사진1">-->
+<!--            </div>-->
+<!--            <div class="carousel-item">-->
+<!--                <img src="{% static 'board/images/bg2.jpg' %}" class="d-block w-100" alt="배경사진2">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
