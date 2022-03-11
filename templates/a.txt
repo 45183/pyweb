@@ -31,5 +31,5 @@ manual configuration
 python3.8
 
 
-온라인으로 할때
+온라인 배포 할 때
 config - settings.py에서 DEBUG = False
