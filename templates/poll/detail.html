@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}
+설문 항목
+{% endblock %}
+{% block content %}
+<div class="container my-3 card pt-3 col-4">
+    <section>
+        <form action="{% url 'poll:vote' question.id %}" method="post">
+            {% csrf_token %}
+            <fieldset class="card-body">
+                <legend class="card-title">{{ question.question_text }}</legend>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+                {% for choice in question.choice_set.all %}
+                <p class="card-text">
+                    <input type="radio" name="choice" value="{{ choice.id }}">
+                    <label>{{ choice.choice_text }}</label>
+                </p>
+                {% endfor %}
+            </fieldset>
+            <p><input type="submit" class="btn btn-primary" value="투표"></p>
+        </form>
+    </section>
+</div>
+{% endblock %}

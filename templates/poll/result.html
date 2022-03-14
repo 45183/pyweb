@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}
+설문 결과
+{% endblock %}
+{% block content %}
+<div class="container my-3 card col-4">
+    <section class="pt-4 pl-4">
+        <h2>{{ question.question_text }}</h2>
+        <ul>
+            {% for choice in question.choice_set.all %}
+            <li>
+                {{ choice.choice_text }} -- {{ choice.votes }}votes
+            </li>
+            {% endfor %}
+        </ul>
+        <p><button type="button" class="btn btn-primary" onclick="location.href='/poll/'">설문 목록</button></p>
+    </section>
+</div>
+{% endblock %}
