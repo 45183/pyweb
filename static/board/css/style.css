@@ -1,0 +1,17 @@
+/* 박스 크기(height) 설정 */
+.question_list{height: 100px;}
+.login{height: 300px;}
+.signup{height: 200px;}
+.question_form{height: 300px;}
+.detail{height: 100px;}
+.detail_poll{height: 300px;}
+.index_poll{height: 300px;}
+.result_poll{height: 300px;}
+.comment_form{height: 300px;}
+
+/* footer 스타일 */
+footer .menu{list-style: none;}
+footer .menu li{display: inline-block; margin: 10px 0; border-right : 2px solid rgb(0, 0, 255); padding: 0 10px;}
+footer .menu li:last-child{border: none;}           /* 마지막 바(|) 숨김 */
+footer .menu li a{text-decoration: none;}
+footer address p{color: #fff; margin-left: 40px; color: rgba(255, 255, 255, 0.6); font-size: 0.9em; line-height: 0.9em;}

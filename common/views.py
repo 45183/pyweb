@@ -6,7 +6,7 @@ from common.forms import UserForm
 def login_view(request):
     if request.method == "POST":
         username = request.POST['username']
-        password = request.POST['password']
+        password = request.POST['password']                             # login.html에서 password
 
         user = authenticate(username=username, password=password)       # db와 비교 인증 처리
         if user is not None:        # 일치한다면
@@ -28,6 +28,12 @@ def signup(request):
         form = UserForm(request.POST)       # 입력된 데이터와 폼 가져오기
         if form.is_valid():                 # 유효성 검사를 통과하면
             form.save()                     # db에 저장
+
+            # 회원 가입 후 자동 로그인
+            username = form.cleaned_data.get('username')                    # 사용자 id
+            password1 = form.cleaned_data.get('password1')                  # signup.html에서 password1로 설정
+            user = authenticate(username=username, password=password1)      # 인증(세션=user)
+            login(request, user)                                            # 로그인
             return redirect('board:index')
     else:
         form = UserForm()
